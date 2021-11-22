@@ -6,32 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
-    <title>Document</title>
+    <title>Signup</title>
 </head>
 
 <body>
+
     <header>
         <nav>
             <ul>
-                <li><a href="/signup.html" class="btn">Sign up</a></li>
+                <li class="btn"><a href="/login.html">Log in</a></li>
             </ul>
         </nav>
     </header>
 
     <form action="/signup">
-        <h2>Login</h2>
-        <label for="name">Name</label>
-        <input type="text" name="name" />
+        <h2>Sign up</h2>
         <label for="email">Email</label>
-        <input type="text" name="email" />
+        <input type="text" name="email" required />
         <div class="email error"></div>
         <label for="password">Password</label>
-        <input type="password" name="password" />
-        <label for="password">Password check</label>
-        <input type="password" name="password2" />
+        <input type="password" name="password" required />
         <div class="password error"></div>
-        <button>login</button>
+        <button>Sign up</button>
     </form>
+
     <footer>Copyright 2022 King Frosh</footer>
 
 </body>

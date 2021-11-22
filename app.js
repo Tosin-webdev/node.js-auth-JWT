@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDB = require("./connection/database");
 const dotenv = require("dotenv");
+const userRoutes = require("./routes/userRoutes");
 // const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
   res.send("home");
 });
 
+app.use(userRoutes);
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
 });

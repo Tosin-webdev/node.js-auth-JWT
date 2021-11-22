@@ -10,26 +10,28 @@
 </head>
 
 <body>
-
     <header>
         <nav>
             <ul>
-                <li class="btn"><a href="/login.html">Log in</a></li>
+                <li><a href="/signup.html" class="btn">Sign up</a></li>
             </ul>
         </nav>
     </header>
 
     <form action="/signup">
-        <h2>Sign up</h2>
+        <h2>Login</h2>
+        <label for="name">Name</label>
+        <input type="text" name="name" />
         <label for="email">Email</label>
-        <input type="text" name="email" required />
+        <input type="text" name="email" />
         <div class="email error"></div>
         <label for="password">Password</label>
-        <input type="password" name="password" required />
+        <input type="password" name="password" />
+        <label for="password">Password check</label>
+        <input type="password" name="password2" />
         <div class="password error"></div>
-        <button>Sign up</button>
+        <button>login</button>
     </form>
-
     <footer>Copyright 2022 King Frosh</footer>
 
 </body>
