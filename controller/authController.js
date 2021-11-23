@@ -12,4 +12,5 @@ module.exports.signup_get = (req, res) => {
 
 module.exports.signup_post = (req, res) => {
   res.render("signup");
+  console.log(req.body);
 };
