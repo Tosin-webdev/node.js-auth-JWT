@@ -2,7 +2,8 @@ const express = require("express");
 const connectDB = require("./connection/database");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
-// const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -11,11 +12,11 @@ dotenv.config({ path: ".env" });
 
 // middleware
 app.use(express.static("public"));
-
+app.use(express.json());
+app.use(cookieParser());
 // view engine
 app.set("view engine", "ejs");
 // app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Database connectionn
 connectDB();
