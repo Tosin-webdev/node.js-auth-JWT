@@ -22,11 +22,13 @@
         <h2>Signup</h2>
         <label for="name">Name</label>
         <input type="text" name="name" />
+        <div class="name error"></div>
         <label for="email">Email</label>
         <input type="text" name="email" />
         <div class="email error"></div>
         <label for="password">Password</label>
         <input type="password" name="password" />
+        <div class="password error"></div>
         <label for="password">Password check</label>
         <input type="password" name="password2" />
         <div class="password error"></div>
@@ -34,9 +36,18 @@
     </form>
 
     <script>
+
         const form = document.querySelector('form')
+        const nameError = document.querySelector('.name.error')
+        const emailError = document.querySelector('.email.error')
+        const passwordError = document.querySelector('.password.error')
         form.addEventListener('submit', async (e)=>{
             e.preventDefault()
+
+            // reset values
+            emailError.textContent = ''
+            passwordError.textContent = ''
+
             // get the values
             const name = form.name.value
             const email = form.email.value
@@ -50,9 +61,10 @@
                 })
                 const data = await res.json()
                 console.log(data)
-                // if (data.errors){
-                //     emailError.textC
-                // }
+                if (data.errors){
+                    emailError.textContent = data.errors.email
+                    passwordError.textContent = data.errors.password
+                }
              
             } catch (error) {
                 console.log(error)
