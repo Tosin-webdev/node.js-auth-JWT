@@ -54,7 +54,7 @@ module.exports.signup_post = async (req, res) => {
   } catch (error) {
     // console.log(error);
     const errors = handleErrors(error);
-    res.status(400).json(errors);
+    res.status(400).json({ errors });
   }
   // res.render("signup");
   // console.log(req.body);
