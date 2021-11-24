@@ -32,6 +32,19 @@
         <div class="password error"></div>
         <button>login</button>
     </form>
+
+    <script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault()
+            // get the values
+            const name = form.name.value
+            const email = form.email.value
+            const password = form.password.value
+            console.log(name, email, password)
+        })
+    </script>
+    </script>
     <footer>Copyright 2022 King Frosh</footer>
 
 </body>
