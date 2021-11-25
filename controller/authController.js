@@ -53,7 +53,7 @@ module.exports.signup_post = async (req, res) => {
     console.log(user._id);
     res.status(201).json({ user: user._id });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     const errors = handleErrors(error);
     res.status(400).json({ errors });
   }
