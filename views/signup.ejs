@@ -40,13 +40,13 @@
         const form = document.querySelector('form')
         const nameError = document.querySelector('.name.error')
         const emailError = document.querySelector('.email.error')
-        const passwordError = document.querySelector('.password.error')
+
         form.addEventListener('submit', async (e)=>{
             e.preventDefault()
 
             // reset values
-            // emailError.textContent = ''
-            // passwordError.textContent = ''
+            emailError.textContent = ''
+            passwordError.textContent = ''
 
             // get the values
             const name = form.name.value
