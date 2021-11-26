@@ -60,24 +60,24 @@
         const email = form.email.value
         const password = form.password.value
         console.log(name, email, password)
-        // try {
-        //     const res = await fetch('/signup', {
-        //         method: 'POST',
-        //         body: JSON.stringify({ name, email, password}),
-        //         headers: { 'Content-Type': 'application/json' }
-        //     })
-        //     const data = await res.json()
-        //     // console.log(data)
-        //     if (data.errors) {
-        //         nameError.textContent = data.errors.name
-        //         emailError.textContent = data.errors.email
-        //         passwordError.textContent = data.errors.password
-        //     }
-        //     if (data.user) {
-        //         location.assign('/')
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+            const res = await fetch('/signup', {
+                method: 'POST',
+                body: JSON.stringify({ name, email, password}),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            const data = await res.json()
+            // console.log(data)
+            if (data.errors) {
+                nameError.textContent = data.errors.name
+                emailError.textContent = data.errors.email
+                passwordError.textContent = data.errors.password
+            }
+            if (data.user) {
+                location.assign('/')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     })
 </script>
