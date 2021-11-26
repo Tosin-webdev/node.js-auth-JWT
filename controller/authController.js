@@ -4,6 +4,11 @@ const User = require("../models/User");
 const handleErrors = (err) => {
   console.log(err.message, err.code);
   let error = { email: "", password: "" };
+
+  // validation errors
+  if (err.message.includes("user validation failed")) {
+    console.log(err);
+  }
 };
 // controller actions
 module.exports.signup_get = (req, res) => {
