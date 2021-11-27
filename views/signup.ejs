@@ -55,6 +55,7 @@
         emailError.textContent = ''
         passwordError.textContent = ''
 
+
         // get the values
         const name = form.name.value
         const email = form.email.value
@@ -67,7 +68,7 @@
                 headers: { 'Content-Type': 'application/json' }
             })
             const data = await res.json()
-            // console.log(data)
+            console.log(data)
             if (data.errors) {
                 nameError.textContent = data.errors.name
                 emailError.textContent = data.errors.email
