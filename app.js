@@ -23,7 +23,7 @@ connectDB();
 
 // routes
 app.get("/", (req, res) => {
-  res.send("home");
+  res.render("home");
 });
 
 app.use(userRoutes);
