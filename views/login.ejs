@@ -36,7 +36,12 @@
 </html>
 
 <script>
-      form.addEventListener('submit', async (e) => {
+    const form = document.querySelector('form')
+    const nameError = document.querySelector('.name.error')
+    const emailError = document.querySelector('.email.error')
+    const passwordError = document.querySelector('.password.error')
+    const password2Error = document.querySelector('.password2.error')
+    form.addEventListener('submit', async (e) => {
       e.preventDefault()
 
         // reset values
