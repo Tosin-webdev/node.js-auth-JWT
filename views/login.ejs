@@ -34,3 +34,46 @@
 </body>
 
 </html>
+
+<script>
+      form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+        // reset values
+        nameError.textContent = ''
+        emailError.textContent = ''
+        passwordError.textContent = ''
+        password2Error.textContent = ''
+
+
+        // get the values
+        const name = form.name.value
+        const email = form.email.value
+        const password = form.password.value
+        const password2 = form.password2.value
+        console.log(name, email, password)
+
+        if (password !== password2) {
+            return password2Error.textContent = "password does not match"
+        }
+        try {
+            const res = await fetch('/signup', {
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            const data = await res.json()
+            console.log(data)
+            if (data.errors) {
+                nameError.textContent = data.errors.name
+                emailError.textContent = data.errors.email
+                passwordError.textContent = data.errors.password
+            }
+            if (data.user) {
+                location.assign('/')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+      })
+</script>
