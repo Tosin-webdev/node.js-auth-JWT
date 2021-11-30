@@ -3,6 +3,7 @@ const connectDB = require("./connection/database");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const cookieParser = require("cookie-parser");
+const { requireAuth } = require("./middleware/authMiddleware");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -24,6 +25,10 @@ connectDB();
 // routes
 app.get("/", (req, res) => {
   res.render("home");
+});
+
+app.get("/product", requireAuth, (req, res) => {
+  res.render("product");
 });
 
 app.use(userRoutes);
