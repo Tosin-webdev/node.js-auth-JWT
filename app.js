@@ -3,7 +3,7 @@ const connectDB = require("./connection/database");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const cookieParser = require("cookie-parser");
-const { requireAuth } = require("./middleware/authMiddleware");
+const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -23,14 +23,13 @@ app.set("view engine", "ejs");
 connectDB();
 
 // routes
+app.get("*", checkUser);
 app.get("/", (req, res) => {
   res.render("home");
 });
-
 app.get("/product", requireAuth, (req, res) => {
   res.render("product");
 });
-
 app.use(userRoutes);
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
