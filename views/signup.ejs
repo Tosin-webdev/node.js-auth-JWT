@@ -10,13 +10,14 @@
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <nav>
             <ul>
                 <li><a href="/login" class="btn">Login</a></li>
             </ul>
         </nav>
-    </header>
+    </header> -->
+    <%- include('./partials/header')%>
 
     <form action="/signup">
         <h2>Signup</h2>
@@ -84,7 +85,7 @@
                 passwordError.textContent = data.errors.password
             }
             if (data.user) {
-                location.assign('/')
+                location.assign('/login')
             }
         } catch (error) {
             console.log(error)
