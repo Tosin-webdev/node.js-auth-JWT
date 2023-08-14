@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- <header>
         <nav>
             <ul>
@@ -20,75 +19,72 @@
     <%- include('./partials/header')%>
 
     <form action="/signup">
-        <h2>Signup</h2>
-        <label for="name">Name</label>
-        <input type="text" name="name" />
-        <div class="name error"></div>
-        <label for="email">Email</label>
-        <input type="text" name="email" />
-        <div class="email error"></div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" />
-        <div class="password error"></div>
-        <label for="password">Password check</label>
-        <input type="password" id="password2" name="password2" />
-        <div class="password2 error"></div>
-        <button>login</button>
+      <h2>Signup</h2>
+      <label for="name">Name</label>
+      <input type="text" name="name" required />
+      <div class="name error"></div>
+      <label for="email">Email</label>
+      <input type="text" name="email" required />
+      <div class="email error"></div>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      <div class="password error"></div>
+      <label for="password">Password check</label>
+      <input type="password" id="password2" name="password2" required />
+      <div class="password2 error"></div>
+      <button>Sign up</button>
     </form>
 
-   
- <footer>Copyright 2022 King Frosh</footer>
-</body>
+    <footer>Copyright 2022 King Frosh</footer>
+  </body>
 </html>
 
 <script>
+  const form = document.querySelector('form');
+  const nameError = document.querySelector('.name.error');
+  const emailError = document.querySelector('.email.error');
+  const passwordError = document.querySelector('.password.error');
+  const password2Error = document.querySelector('.password2.error');
+  // const password = document.getElementById('password')
+  // const password2 = document.getElementById('password2')
 
-    const form = document.querySelector('form')
-    const nameError = document.querySelector('.name.error')
-    const emailError = document.querySelector('.email.error')
-    const passwordError = document.querySelector('.password.error')
-    const password2Error = document.querySelector('.password2.error')
-    // const password = document.getElementById('password')
-    // const password2 = document.getElementById('password2')
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault()
+    // reset values
+    nameError.textContent = '';
+    emailError.textContent = '';
+    passwordError.textContent = '';
+    password2Error.textContent = '';
 
-        // reset values
-        nameError.textContent = ''
-        emailError.textContent = ''
-        passwordError.textContent = ''
-        password2Error.textContent = ''
+    // get the values
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const password2 = form.password2.value;
+    console.log(name, email, password);
 
-
-        // get the values
-        const name = form.name.value
-        const email = form.email.value
-        const password = form.password.value
-        const password2 = form.password2.value
-        console.log(name, email, password)
-
-        if (password !== password2 ){
-         return password2Error.textContent  = "password does not match"
-        }
-        try {
-            const res = await fetch('/signup', {
-                method: 'POST',
-                body: JSON.stringify({ name, email, password}),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            const data = await res.json()
-            console.log(data)
-            if (data.errors) {
-                nameError.textContent = data.errors.name
-                emailError.textContent = data.errors.email
-                passwordError.textContent = data.errors.password
-            }
-            if (data.user) {
-                location.assign('/login')
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    })
+    if (password !== password2) {
+      return (password2Error.textContent = 'password does not match');
+    }
+    try {
+      const res = await fetch('/signup', {
+        method: 'POST',
+        body: JSON.stringify({ name, email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        nameError.textContent = data.errors.name;
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+        location.assign('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
 </script>

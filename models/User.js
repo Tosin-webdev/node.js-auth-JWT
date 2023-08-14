@@ -1,28 +1,28 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const { isEmail } = require("validator");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const { isEmail } = require('validator');
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "please enter a name"],
+    required: [true, 'please enter a name'],
   },
   email: {
     type: String,
-    required: [true, "please enter an email"],
+    required: [true, 'please enter an email'],
     unique: true,
     lowercase: true,
-    validate: [isEmail, "Please enter a valid email"],
+    validate: [isEmail, 'Please enter a valid email'],
   },
   password: {
     type: String,
-    required: [true, "Please enter a password"],
-    minlength: [6, "Minimum password length is 6 characters"],
+    required: [true, 'Please enter a password'],
+    minlength: [6, 'Minimum password length is 6 characters'],
   },
 });
 
 // fires a function before doc saved to the DB
-userSchema.pre("save", async function (next) {
+userSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
@@ -38,10 +38,10 @@ userSchema.statics.login = async function (email, password) {
     if (auth) {
       return user;
     }
-    throw Error("incorrect password");
+    throw Error('incorrect password');
   }
-  throw Error("incorrect email");
+  throw Error('incorrect email');
 };
 
-const User = mongoose.model("auth", userSchema);
+const User = mongoose.model('auth', userSchema);
 module.exports = User;
